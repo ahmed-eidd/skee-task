@@ -1,0 +1,8 @@
+.Box {
+  background-color: var(--color-white-100);
+  width: 90%;
+  margin: 3rem auto;
+  padding: 1rem;
+  border-radius: var(--border-radius-100);
+  box-shadow: var(--box-shadow-100) var(--color-grey-100);
+}

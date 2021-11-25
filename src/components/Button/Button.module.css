@@ -1,0 +1,17 @@
+.Button {
+  color: var(--color-white-100);
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius-100);
+  border: none;
+  font-size: inherit;
+}
+
+.Red {
+  background-color: var(--color-red-100);
+}
+.Green {
+  background-color: var(--color-green-200);
+}
+.Orange {
+  background-color: var(--color-orange-100);
+}
