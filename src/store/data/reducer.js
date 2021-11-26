@@ -20,6 +20,7 @@ const dataReducer = (state = initialState, action) => {
 
   switch (type) {
     case actionTypes.ADD_CATEGORY: {
+
       const newCategoryId = idGenerator();
     
       const newMovie = {
@@ -27,7 +28,10 @@ const dataReducer = (state = initialState, action) => {
         name: payload.categoryName,
         movies: [],
       };
+
       customToast('New Category has been added')
+
+
       return {
         ...state,
         categories: {
@@ -41,7 +45,9 @@ const dataReducer = (state = initialState, action) => {
       };
     }
 
+
     case actionTypes.ADD_MOVIE: {
+
       const newMovieId = idGenerator();
 
       const newMovie = {
@@ -50,6 +56,8 @@ const dataReducer = (state = initialState, action) => {
       };
 
       customToast('New Movie has been added')
+
+
       return {
         ...state,
         categories: {
@@ -77,12 +85,17 @@ const dataReducer = (state = initialState, action) => {
       };
     }
 
+
     case actionTypes.EDIT_MOVIE: {
+
       const editedMovie = {
         name: payload.movieName,
         id: payload.movieId,
       };
+
       customToast('Movie Edited! Success')
+
+
       return {
         ...state,
         movies: {
@@ -95,7 +108,9 @@ const dataReducer = (state = initialState, action) => {
       };
     }
 
+
     case actionTypes.DELETE_MOVIE: {
+
       // filter movies in the allIds object
       const newMovieAllIds = movieState.allIds.filter(
         (id) => id !== payload.movieId
@@ -115,6 +130,7 @@ const dataReducer = (state = initialState, action) => {
       ].movies.filter((el) => el !== payload.movieId);
 
       customToast('Movie Deleted! Success')
+
 
       return {
         ...state,
@@ -137,6 +153,7 @@ const dataReducer = (state = initialState, action) => {
         },
       };
     }
+
 
     default:
       return state;
