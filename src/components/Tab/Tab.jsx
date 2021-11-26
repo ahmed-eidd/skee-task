@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { allMoviesSelector } from '../../store/data/selector';
 import BurgerIcon from '../BurgerIcon/BurgerIcon';
 import MovieList from './MovieList/MovieList';
 import classes from './Tab.module.css';
@@ -11,11 +12,7 @@ const Tab = ({ categoryName, categoryId }) => {
     setOpen(!open);
   };
 
-  const movies = useSelector((state) =>
-    state.data.categories.byId[categoryId].movies.map(
-      (id) => state.data.movies.byId[id]
-    )
-  );
+  const movies = useSelector((state) => allMoviesSelector(state, categoryId));
 
   return (
     <div className={classes.Container}>

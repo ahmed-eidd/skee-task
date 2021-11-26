@@ -3,11 +3,10 @@ import Box from './components/Box/Box';
 import Tab from './components/Tab/Tab';
 import { useSelector } from 'react-redux';
 import CategoryForm from './components/CategoryForm/CategoryForm';
+import { allCategoriesSelector } from './store/data/selector';
 
 function App() {
-  const allCategories = useSelector((state) =>
-    state.data.categories.allIds.map((id) => state.data.categories.byId[id])
-  );
+  const allCategories = useSelector((state) => allCategoriesSelector(state))
   return (
     <div className='App'>
       <CategoryForm />
