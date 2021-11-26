@@ -23,6 +23,7 @@ const CategoryForm = () => {
     }
 
     setError('');
+    setCategoryName('')
     dispatch(addCategoryAction(categoryName, categoryDescription));
   };
   return (
