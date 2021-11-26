@@ -52,7 +52,10 @@ const dataReducer = (state = initialState, action) => {
             ...categoryState.byId,
             [payload.categoryId]: {
               ...categoryState.byId[payload.categoryId],
-              movies: [...categoryState.byId[payload.categoryId].movies, newMovieId],
+              movies: [
+                ...categoryState.byId[payload.categoryId].movies,
+                newMovieId,
+              ],
             },
           },
         },
@@ -68,9 +71,22 @@ const dataReducer = (state = initialState, action) => {
       };
     }
 
-
-  
-
+    case actionTypes.EDIT_MOVIE: {
+      const editedMovie = {
+        name: payload.movieName,
+        id: payload.movieId,
+      };
+      return {
+        ...state,
+        movies: {
+          ...movieState,
+          byId: {
+            ...movieState.byId,
+            [payload.movieId]: editedMovie,
+          },
+        },
+      };
+    }
 
     case actionTypes.DELETE_MOVIE: {
       // filter movies in the allIds object
