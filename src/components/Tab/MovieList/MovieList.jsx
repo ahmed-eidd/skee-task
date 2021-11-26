@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteMovieAction } from '../../../store/data/action';
 import BurgerIcon from '../../BurgerIcon/BurgerIcon';
 import Button from '../../Button/Button';
+import MovieForm from '../MovieForm/MovieForm';
 import classes from './MovieList.module.css';
 
 const MovieList = ({ movies, categoryId }) => {
@@ -12,6 +13,7 @@ const MovieList = ({ movies, categoryId }) => {
   };
   return (
     <div className={classes.MovieList}>
+      <MovieForm categoryId={categoryId} />
       {movies?.length > 0 ? (
         movies?.map((el) => (
           <div className={classes.Movie} key={el?.id}>
@@ -23,7 +25,11 @@ const MovieList = ({ movies, categoryId }) => {
               <Button px={4} color='orange'>
                 Edit
               </Button>
-              <Button px={4} color='red' onClick={() => onDeleteHandler(el?.id)}>
+              <Button
+                px={4}
+                color='red'
+                onClick={() => onDeleteHandler(el?.id)}
+              >
                 Delete
               </Button>
             </div>

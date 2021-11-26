@@ -1,5 +1,6 @@
 import { actionTypes } from './actionTypes';
 import { categoryObj, movieObj } from '../../helpers/formatData';
+import { v1 as idGenerator } from 'uuid';
 
 const initialState = {
   categories: categoryObj,
@@ -8,42 +9,96 @@ const initialState = {
 
 const dataReducer = (state = initialState, action) => {
   const { type, payload } = action;
+
+  const categoryState = state.categories;
+  const movieState = state.movies;
+
   switch (type) {
     case actionTypes.ADD_CATEGORY: {
-      break;
+      const newCategoryId = idGenerator();
+
+      const newMovie = {
+        id: newCategoryId,
+        name: payload.categoryName,
+        movies: [],
+      };
+
+      return {
+        ...state,
+        categories: {
+          ...categoryState,
+          byId: {
+            ...categoryState.byId,
+            [newCategoryId]: newMovie,
+          },
+          allIds: [...categoryState.allIds, newCategoryId],
+        },
+      };
     }
 
     case actionTypes.ADD_MOVIE: {
-      break;
+      const newMovieId = idGenerator();
+
+      const newMovie = {
+        name: payload.movieName,
+        id: newMovieId,
+      };
+
+      return {
+        ...state,
+        categories: {
+          ...categoryState,
+          byId: {
+            ...categoryState.byId,
+            [payload.categoryId]: {
+              ...categoryState.byId[payload.categoryId],
+              movies: [...categoryState.byId[payload.categoryId].movies, newMovieId],
+            },
+          },
+        },
+
+        movies: {
+          ...movieState,
+          byId: {
+            ...movieState.byId,
+            [newMovieId]: newMovie,
+          },
+          allIds: [...movieState.allIds, newMovieId],
+        },
+      };
     }
+
+
+  
+
 
     case actionTypes.DELETE_MOVIE: {
       // filter movies in the allIds object
-      const newMovieAllIds = state.movies.allIds.filter(
+      const newMovieAllIds = movieState.allIds.filter(
         (id) => id !== payload.movieId
       );
 
       // filter movies the byId object
-      const newMovieById = Object.keys(state.movies.byId).reduce((acc, key) => {
+      const newMovieById = Object.keys(movieState.byId).reduce((acc, key) => {
         if (key !== +payload.movieId) {
-          acc[key] = state.movies.byId[key];
+          acc[key] = movieState.byId[key];
         }
         return acc;
       }, {});
 
       // filter movies in the categories byId object
-      const newCategoriesById = state.categories.byId[
+      const newCategoriesById = categoryState.byId[
         payload.categoryId
       ].movies.filter((el) => el !== payload.movieId);
 
       return {
         ...state,
         categories: {
-          ...state.categories,
+          ...categoryState,
           byId: {
-            ...state.categories.byId,
+            ...categoryState.byId,
             [payload.categoryId]: {
-              ...state.categories.byId[payload.categoryId],
+              ...categoryState.byId[payload.categoryId],
               movies: newCategoriesById,
             },
           },
@@ -51,7 +106,7 @@ const dataReducer = (state = initialState, action) => {
 
         // movies
         movies: {
-          ...state.movies,
+          ...movieState,
           allIds: newMovieAllIds,
           byId: newMovieById,
         },

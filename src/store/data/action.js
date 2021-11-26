@@ -14,10 +14,10 @@ export const addMovieAction = (categoryId, movieName, movieDescription) => ({
   },
 });
 
-export const editMovieAction = (categoryId, movieName, movieDescription) => ({
+export const editMovieAction = (movieId, movieName, movieDescription) => ({
   type: actionTypes.EDIT_MOVIE,
   payload: {
-    categoryId,
+    movieId,
     movieName,
     movieDescription,
   },
