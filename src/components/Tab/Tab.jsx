@@ -17,7 +17,6 @@ const Tab = ({ categoryName, categoryId }) => {
     )
   );
 
-  console.log('movies',movies)
   return (
     <div className={classes.Container}>
       <div className={classes.Tab} onClick={toggleMenu}>

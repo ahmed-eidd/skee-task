@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMovieAction } from '../../../store/categories/action';
+import { addMovieAction } from '../../../store/data/action';
 import { editMovieAction } from '../../../store/data/action';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
@@ -35,7 +35,7 @@ const MovieForm = ({ categoryId, edit, movie, onEdit }) => {
         value={description}
         onChange={(e) => onInputChange(e, setDescription)}
       />
-      <Button onClick={onSumbit}>Create Movie</Button>
+      <Button onClick={onSumbit}>{edit ? 'Edit Movie' : 'Create Movie'}</Button>
     </div>
   );
 };

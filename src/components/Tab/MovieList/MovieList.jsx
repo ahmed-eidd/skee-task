@@ -27,8 +27,8 @@ const MovieList = ({ movies, categoryId }) => {
       <MovieForm categoryId={categoryId} />
       {movies?.length > 0 ? (
         movies?.map((el) => (
-          <>
-            <div className={classes.Movie} key={el?.id}>
+          <React.Fragment key={el?.id}>
+            <div className={classes.Movie}>
               <div className={classes.MovieName}>
                 <BurgerIcon size='sm' />
                 {el?.name}
@@ -53,7 +53,7 @@ const MovieList = ({ movies, categoryId }) => {
             {editMovie && el.id === editMovieId && (
               <MovieForm edit movie={el} onEdit={onEditMovieHandler} />
             )}
-          </>
+          </React.Fragment>
         ))
       ) : (
         <div className={classes.Movie}>No Movies</div>

@@ -1,7 +1,7 @@
 import { actionTypes } from './actionTypes';
 
 export const addCategoryAction = (categoryName, categoryDescription) => ({
-  type: actionTypes.ADD_CATEGORY_NR,
+  type: actionTypes.ADD_CATEGORY,
   payload: { categoryName, categoryDescription },
 });
 

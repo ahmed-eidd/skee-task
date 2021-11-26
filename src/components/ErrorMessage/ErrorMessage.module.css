@@ -1,0 +1,4 @@
+.ErrorMessage {
+  color: var(--color-red-100);
+  font-size: 1.6rem;
+}

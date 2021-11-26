@@ -2,6 +2,12 @@ import { actionTypes } from './actionTypes';
 import { categoryObj, movieObj } from '../../helpers/formatData';
 import { v1 as idGenerator } from 'uuid';
 
+
+// { categoryObj, movieObj } from 'formData' is a normalized redux State Shape
+// for more information:
+// https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
+
+
 const initialState = {
   categories: categoryObj,
   movies: movieObj,
@@ -14,6 +20,10 @@ const dataReducer = (state = initialState, action) => {
   const movieState = state.movies;
 
   switch (type) {
+
+
+
+    
     case actionTypes.ADD_CATEGORY: {
       const newCategoryId = idGenerator();
 
@@ -35,6 +45,9 @@ const dataReducer = (state = initialState, action) => {
         },
       };
     }
+
+
+
 
     case actionTypes.ADD_MOVIE: {
       const newMovieId = idGenerator();
@@ -71,6 +84,10 @@ const dataReducer = (state = initialState, action) => {
       };
     }
 
+
+
+
+
     case actionTypes.EDIT_MOVIE: {
       const editedMovie = {
         name: payload.movieName,
@@ -87,6 +104,10 @@ const dataReducer = (state = initialState, action) => {
         },
       };
     }
+
+
+
+
 
     case actionTypes.DELETE_MOVIE: {
       // filter movies in the allIds object
