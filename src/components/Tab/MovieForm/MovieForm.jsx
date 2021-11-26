@@ -26,7 +26,6 @@ const MovieForm = ({ categoryId, edit, movie, onEdit }) => {
       onEdit();
       return;
     }
-
     dispatch(addMovieAction(categoryId, name, description));
     setName('')
   };

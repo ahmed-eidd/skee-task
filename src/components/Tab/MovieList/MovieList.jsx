@@ -23,7 +23,7 @@ const MovieList = ({ movies, categoryId }) => {
     dispatch(deleteMovieAction(categoryId, movieId));
   };
   return (
-    <div className={classes.MovieList}>
+    <div className={classes.MoviesList}>
       <MovieForm categoryId={categoryId} />
       {movies?.length > 0 ? (
         movies?.map((el) => (
