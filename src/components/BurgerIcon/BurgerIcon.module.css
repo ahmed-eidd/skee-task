@@ -1,0 +1,23 @@
+.BurgerIcon {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sm div {
+  height: 2px;
+  background-color: var(--color-black-100);
+  width: 15px;
+}
+
+.md div {
+  height: 3px;
+  background-color: var(--color-black-100);
+  width: 20px;
+}
+
+.lg div {
+  height: 3px;
+  background-color: var(--color-black-100);
+  width: 20px;
+}

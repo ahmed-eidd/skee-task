@@ -1,0 +1,8 @@
+.Input {
+  margin: 1rem;
+}
+
+.InputElement {
+  border: 2px solid var(--color-grey-100);
+  padding: 1rem;
+}

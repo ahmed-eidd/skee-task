@@ -1,7 +1,9 @@
 import React from 'react';
+import { extendClasses } from '../../helpers/extendClasses';
 import classes from './Button.module.css';
 
 const Button = ({ children, type, color, onClick, px, style }) => {
+
   const btnColor = () => {
     if (color === 'green' || !color) {
       return classes.Green;
@@ -14,7 +16,10 @@ const Button = ({ children, type, color, onClick, px, style }) => {
     }
   };
 
-  const btnClasses = [classes.Button, btnColor()].join(' ');
+
+  // added all the button classes with the color 
+
+  const btnClasses = extendClasses(classes.Button, btnColor());
 
   return (
     <button

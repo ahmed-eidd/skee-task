@@ -9,20 +9,55 @@ const categoriesReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case actionTypes.ADD_CATEGORY: {
+      const newMovie = {
+        id: payload.categoryName + new Date(),
+        name: payload.categoryName,
+        movies: [],
+      };
       return {
-        items: [...state.items, payload],
+        items: [...state.items, newMovie],
       };
     }
 
     case actionTypes.ADD_MOVIE: {
-      const movieCategory = state.items.findIndex((movie) => movie.id === +payload.id );
-      console.log(movieCategory);
-      state.items[movieCategory].movies = [
-        ...state.items[movieCategory].movies,
-        payload,
+      const categoryIndex = state.items.findIndex(
+        (movie) => movie.id === +payload.categoryId
+      );
+      const newState = {
+        ...state,
+      };
+
+      newState.items[categoryIndex].movies = [
+        ...newState.items[categoryIndex].movies,
+        {
+          name: payload.movieName,
+          description: payload.movieDescription,
+          id: payload.movieName + new Date(),
+        },
       ];
       return {
-        items: [...state.items],
+        ...newState,
+      };
+    }
+
+    case actionTypes.DELETE_MOVIE: {
+      const categoryIndex = state.items.findIndex(
+        (category) => category.id === payload.categoryId
+      );
+
+
+      return {
+        ...state,
+        items: [ 
+          ...state.items,
+          state.items[categoryIndex] 
+          // [categoryIndex]: {
+          //   ...state.items[categoryIndex],
+          //   movies: state.items[categoryIndex].movies.filter(
+          //     (el) => el.id !== payload.movieId
+          //   ),
+          // },
+         ],
       };
     }
 
