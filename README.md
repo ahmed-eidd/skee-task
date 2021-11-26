@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## This Project uses a Normalized Redux state shape for more information: https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
+
 ## Available Scripts
 
 In the project directory, you can run:
